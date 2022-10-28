@@ -12,4 +12,13 @@ function dataUriToFile(dataUri: string, fileName: string): File {
 	return new File([u8arr], fileName, { type: mime });
 }
 
-export { dataUriToFile };
+function fileToBase64(file: File): Promise<string> {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => resolve(reader.result as string);
+		reader.onerror = (error) => reject(error);
+	});
+}
+
+export { dataUriToFile, fileToBase64 };
