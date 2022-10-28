@@ -1,36 +1,44 @@
 {
-  "name": "catchhealth-survey-widgets",
-  "version": "1.0.0",
-  "description": "Custom camera widget for SurveyJS",
-  "private": true,
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm run build",
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "clean": "rm -rf dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/catch-health/catchhealth-survey-widgets.git"
-  },
-  "author": "Catch Health",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/catch-health/catchhealth-survey-widgets/issues"
-  },
-  "homepage": "https://github.com/catch-health/catchhealth-survey-widgets#readme",
-  "dependencies": {
-    "@types/react": "18.0.24",
-    "@types/react-dom": "18.0.8",
-    "@types/react-html5-camera-photo": "1.5.1",
-    "classnames": "2.3.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-html5-camera-photo": "1.5.10",
-    "survey-core": "1.9.55"
-  }
+	"name": "catchhealth-survey-widgets",
+	"version": "1.0.0",
+	"description": "Custom camera widget for SurveyJS",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"postinstall": "npm run build",
+		"prebuild": "npm run clean",
+		"build": "npm run build:typescript && npm run build:tailwind",
+		"build:typescript": "tsc",
+		"build:tailwind": "tailwindcss --postcss -o dist/styles.css",
+		"clean": "rm -rf dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/catch-health/catchhealth-survey-widgets.git"
+	},
+	"author": "Catch Health",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/catch-health/catchhealth-survey-widgets/issues"
+	},
+	"homepage": "https://github.com/catch-health/catchhealth-survey-widgets#readme",
+	"peerDependencies": {
+		"survey-core": "^1.9.55"
+	},
+	"dependencies": {
+		"@types/react": "18.0.24",
+		"@types/react-dom": "18.0.8",
+		"@types/react-html5-camera-photo": "1.5.1",
+		"autoprefixer": "10.4.13",
+		"classnames": "2.3.2",
+		"postcss": "8.4.18",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-html5-camera-photo": "1.5.10",
+		"survey-core": "^1.9.55",
+		"tailwindcss": "3.2.1"
+	}
 }
