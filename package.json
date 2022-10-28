@@ -2,30 +2,35 @@
   "name": "catchhealth-survey-widgets",
   "version": "1.0.0",
   "description": "Custom camera widget for SurveyJS",
-  "main": "src/index.ts",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/catch-health/catchhealth-survey-widgets.git"
   },
-  "author": "",
+  "author": "Catch Health",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/catch-health/catchhealth-survey-widgets/issues"
   },
   "homepage": "https://github.com/catch-health/catchhealth-survey-widgets#readme",
   "dependencies": {
+    "@types/react": "18.0.24",
+    "@types/react-dom": "18.0.8",
+    "@types/react-html5-camera-photo": "1.5.1",
     "classnames": "2.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-html5-camera-photo": "1.5.10",
     "survey-core": "1.9.55"
-  },
-  "devDependencies": {
-    "@types/react": "18.0.24",
-    "@types/react-dom": "18.0.8",
-    "@types/react-html5-camera-photo": "1.5.1"
   }
 }

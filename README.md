@@ -1,2 +1,3 @@
-# survey-camera-widget
-Custom camera widget for SurveyJS
+# Catch Health Survey Widgets
+
+Custom SurveyJS widgets for Catch Health.

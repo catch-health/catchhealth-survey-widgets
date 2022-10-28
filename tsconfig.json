@@ -6,15 +6,17 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"incremental": true,
-		"baseUrl": "."
+		"baseUrl": ".",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true
 	},
 	"exclude": ["node_modules"]
 }
