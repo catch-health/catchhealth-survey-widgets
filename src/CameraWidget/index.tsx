@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { Serializer, CustomWidgetCollection, SvgRegistry } from "survey-core";
 import CameraWidgetWrapper from "./CameraWidgetWrapper";
 import type { IQuestion } from "survey-core";
@@ -52,7 +52,7 @@ export function registerCameraWidget(
 			el.className = "rendered";
 
 			// Let's make it a React component
-			const root = ReactDOM.createRoot(el);
+			const root = createRoot(el);
 			root.render(
 				<CameraWidgetWrapper question={question} handleUpload={handleUpload} />
 			);
