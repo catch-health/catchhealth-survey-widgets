@@ -12,7 +12,7 @@
 		"prebuild": "npm run clean",
 		"build": "npm run build:typescript && npm run build:tailwind",
 		"build:typescript": "tsc",
-		"build:tailwind": "tailwindcss --postcss -o dist/styles.css",
+		"build:tailwind": "tailwindcss --postcss -o dist/styles.css && cat main.css ./dist/styles.css > ./dist/main.css",
 		"clean": "rm -rf dist"
 	},
 	"repository": {

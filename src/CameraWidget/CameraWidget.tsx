@@ -5,7 +5,6 @@ import Camera, { FACING_MODES } from "react-html5-camera-photo";
 import Icon from "../shared/Icon";
 import { add, arrowLeft, arrowRight, camera, close, trash } from "../icons";
 import { dataUriToFile } from "../utils/file";
-import "react-html5-camera-photo/build/css/index.css";
 
 type Props = {
 	allowMultiplePhotos?: boolean;
