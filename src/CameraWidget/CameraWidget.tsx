@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import Camera, { FACING_MODES } from "react-html5-camera-photo";
-import Icon from "../shared/Icon";
+import { Icon } from "../shared/Icon";
 import { add, arrowLeft, arrowRight, camera, close, trash } from "../icons";
 import { dataUriToFile } from "../utils/file";
 
@@ -100,7 +100,7 @@ const PhotoCarousel = ({
 	);
 };
 
-const CameraWidget = ({
+export const CameraWidget = ({
 	allowMultiplePhotos,
 	fileName = "photo",
 	onAddPhoto,
@@ -173,5 +173,3 @@ const CameraWidget = ({
 		</>
 	);
 };
-
-export default CameraWidget;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fileToBase64 } from "../utils/file";
-import CameraWidget from "./CameraWidget";
+import { CameraWidget } from "./CameraWidget";
 import type { CameraQuestion } from "./index";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 	handleUpload?: (file: File) => Promise<string>;
 };
 
-const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
+export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 	const [allowMultiplePhotos, setAllowMultiplePhotos] = useState(
 		question.allowMultiplePhotos
 	);
@@ -56,5 +56,3 @@ const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		/>
 	);
 };
-
-export default CameraWidgetWrapper;

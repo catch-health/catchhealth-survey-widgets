@@ -1,4 +1,4 @@
-function dataUriToFile(dataUri: string, fileName: string): File {
+export function dataUriToFile(dataUri: string, fileName: string): File {
 	const arr = dataUri.split(",");
 	const mime = arr[0].match(/:(.*?);/)![1];
 	const bstr = atob(arr[1]);
@@ -12,7 +12,7 @@ function dataUriToFile(dataUri: string, fileName: string): File {
 	return new File([u8arr], fileName, { type: mime });
 }
 
-function fileToBase64(file: File): Promise<string> {
+export function fileToBase64(file: File): Promise<string> {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
@@ -20,5 +20,3 @@ function fileToBase64(file: File): Promise<string> {
 		reader.onerror = (error) => reject(error);
 	});
 }
-
-export { dataUriToFile, fileToBase64 };

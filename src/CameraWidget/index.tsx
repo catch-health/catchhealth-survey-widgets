@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { Serializer, CustomWidgetCollection, SvgRegistry } from "survey-core";
-import CameraWidgetWrapper from "./CameraWidgetWrapper";
+import { CameraWidgetWrapper } from "./CameraWidgetWrapper";
 import type { IQuestion } from "survey-core";
 
 // Register Icon for the camera widget
