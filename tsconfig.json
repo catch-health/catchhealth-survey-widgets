@@ -16,7 +16,7 @@
 		"baseUrl": ".",
     "outDir": "./dist",
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": false
 	},
   "include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": ["node_modules"]
