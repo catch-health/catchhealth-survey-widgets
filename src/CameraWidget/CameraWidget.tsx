@@ -2,9 +2,10 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import Camera, { FACING_MODES } from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
-import { AddIcon, CameraIcon, CloseIcon, TrashIcon } from "../icons";
+import Icon from "../shared/Icon";
+import { add, arrowLeft, arrowRight, camera, close, trash } from "../icons";
 import { dataUriToFile } from "../utils/file";
+import "react-html5-camera-photo/build/css/index.css";
 
 type Props = {
 	allowMultiplePhotos?: boolean;
@@ -27,7 +28,7 @@ const ActionButton = ({
 	<button
 		className={classNames(
 			className,
-			"absolute top-1 p-2 bg-[color:var(--background)] rounded-full shadow-md hover:shadow-lg hover:[color:var(--primary)]",
+			"group absolute top-1 p-2 bg-[color:var(--background)] rounded-full shadow-md hover:shadow-lg hover:[color:var(--primary)]",
 			{ "left-1": left, "right-1": !left }
 		)}
 		onClick={onClick}
@@ -65,14 +66,11 @@ const PhotoCarousel = ({
 				/>
 				{addMore && (
 					<ActionButton onClick={onAddPhoto} left>
-						<AddIcon className="h-6 w-6" />
+						<Icon icon={add} />
 					</ActionButton>
 				)}
-				<ActionButton
-					className="hover:text-red-500"
-					onClick={handleRemovePhoto}
-				>
-					<TrashIcon className="h-6 w-6" />
+				<ActionButton onClick={handleRemovePhoto}>
+					<Icon icon={trash} className="h-6 w-6 group-hover:text-red-500" />
 				</ActionButton>
 			</div>
 			{addMore && (
@@ -82,40 +80,20 @@ const PhotoCarousel = ({
 						onClick={() => setActiveIndex((prev) => prev - 1)}
 						disabled={activeIndex === 0}
 					>
-						<svg
-							className="w-6 h-6 group-enabled:group-hover:[color:var(--primary)]"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M15 19l-7-7 7-7"
-							/>
-						</svg>
+						<Icon
+							icon={arrowLeft}
+							className="h-6 w-6 group-enabled:group-hover:[color:var(--primary)]"
+						/>
 					</button>
 					<button
 						className="p-2 ml-2 rounded-full group"
 						onClick={() => setActiveIndex((prev) => prev + 1)}
 						disabled={activeIndex === photos.length - 1}
 					>
-						<svg
-							className="w-6 h-6 group-enabled:group-hover:[color:var(--primary)]"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M9 5l7 7-7 7"
-							/>
-						</svg>
+						<Icon
+							icon={arrowRight}
+							className="h-6 w-6 group-enabled:group-hover:[color:var(--primary)]"
+						/>
 					</button>
 				</div>
 			)}
@@ -164,7 +142,7 @@ const CameraWidget = ({
 								className="top-5 right-5"
 								onClick={() => setCameraOpen(false)}
 							>
-								<CloseIcon className="w-6 h-6" />
+								<Icon icon={close} />
 							</ActionButton>
 						</div>
 					</div>,
@@ -184,7 +162,10 @@ const CameraWidget = ({
 					className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-[color:var(--primary)] group"
 					onClick={() => setCameraOpen(true)}
 				>
-					<CameraIcon className="mx-auto h-12 w-12 group-hover:text-[var(--primary)]" />
+					<Icon
+						icon={camera}
+						className="mx-auto h-12 w-12 group-hover:text-[var(--primary)]"
+					/>
 					<span className="mt-2 block text-sm font-medium group-hover:text-[var(--primary)]">
 						Take a photo
 					</span>

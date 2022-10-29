@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fileToBase64 } from "src/utils/file";
+import { fileToBase64 } from "../utils/file";
 import CameraWidget from "./CameraWidget";
 import type { CameraQuestion } from "./index";
 
