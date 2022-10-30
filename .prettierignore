@@ -1,0 +1,5 @@
+# Ignore artifacts:
+dist
+src/shared/types/graphql.ts
+codegen/schema.json
+.next
