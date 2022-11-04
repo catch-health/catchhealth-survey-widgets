@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fileToBase64 } from "../utils/file";
+import { dataUriToFile, fileToBase64 } from "../utils/file";
 import { CameraWidget } from "./CameraWidget";
 import type { CameraQuestion } from "./index";
 
@@ -13,15 +13,14 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		question.allowMultiplePhotos
 	);
 	const handleAddPhoto = async (file: File) => {
-		const isFileId = !!handleUpload;
-		let fileToContent = handleUpload ?? fileToBase64;
-		const content = await fileToContent(file);
+		const fileId = await handleUpload?.(file);
+		const content = await fileToBase64(file);
 
 		const photo = {
 			name: file.name,
 			type: file.type,
-			fileId: isFileId ? content : undefined,
-			content: isFileId ? undefined : content,
+			fileId,
+			content,
 		};
 
 		if (question.value) {
@@ -32,9 +31,9 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 	};
 
 	const handleRemovePhoto = (index: number) => {
-		question.value.splice(index, 1);
+		question.value?.splice(index, 1);
 
-		if (!question.value.length) {
+		if (!question.value?.length) {
 			question.value = null;
 		}
 	};
@@ -50,6 +49,9 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 	return (
 		<CameraWidget
 			allowMultiplePhotos={allowMultiplePhotos}
+			initialValue={question.value?.map((photo) =>
+				dataUriToFile(photo.content, photo.name)
+			)}
 			onAddPhoto={handleAddPhoto}
 			onRemovePhoto={handleRemovePhoto}
 			fileName={question.name}

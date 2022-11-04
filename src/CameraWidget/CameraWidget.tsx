@@ -8,6 +8,7 @@ import { CameraModal } from "./CameraModal";
 type Props = {
 	allowMultiplePhotos?: boolean;
 	fileName?: string;
+	initialValue?: File[];
 	onAddPhoto: (file: File) => void;
 	onRemovePhoto: (index: number) => void;
 };
@@ -15,11 +16,12 @@ type Props = {
 export const CameraWidget = ({
 	allowMultiplePhotos,
 	fileName = "photo",
+	initialValue = [],
 	onAddPhoto,
 	onRemovePhoto,
 }: Props) => {
 	const [cameraOpen, setCameraOpen] = useState(false);
-	const [photos, setPhotos] = useState<File[]>([]);
+	const [photos, setPhotos] = useState<File[]>(initialValue);
 	const cameraInput = React.useRef<HTMLInputElement>(null);
 
 	const handleTakePhoto = (dataUri: string) => {
