@@ -19,7 +19,7 @@ export const CameraModal = ({ onClose, onTakePhoto, open }: Props) => {
 			<div className="bg-[color:var(--background)] rounded-lg md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative">
 				<Camera
 					onTakePhoto={onTakePhoto}
-					isImageMirror={false}
+					isImageMirror={true}
 					isMaxResolution={false}
 					isDisplayStartCameraError={false}
 					isFullscreen={false}
