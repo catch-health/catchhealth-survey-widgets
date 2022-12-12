@@ -9,14 +9,14 @@ import type { IQuestion } from "survey-core";
 
 export interface CameraQuestion extends IQuestion {
 	allowMultiplePhotos: boolean;
+	contents: null | string[];
 	value:
 		| null
 		| [
 				{
 					name: string;
 					type: string;
-					fileId: string | undefined;
-					content: string;
+					fileId?: string;
 				}
 		  ];
 }

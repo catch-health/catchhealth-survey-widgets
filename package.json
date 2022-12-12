@@ -1,6 +1,6 @@
 {
 	"name": "catchhealth-survey-widgets",
-	"version": "0.1.14",
+	"version": "0.1.30",
 	"description": "Custom camera widget for SurveyJS",
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
