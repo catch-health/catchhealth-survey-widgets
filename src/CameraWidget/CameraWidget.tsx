@@ -13,7 +13,6 @@ type Props = {
 	initialValue?: File[];
 	onAddPhoto: (file: File) => Promise<void>;
 	onRemovePhoto: (index: number) => void;
-	onUploadPhotos?: () => Promise<void>;
 	uploading?: boolean;
 };
 
@@ -23,13 +22,11 @@ export const CameraWidget = ({
 	initialValue = [],
 	onAddPhoto,
 	onRemovePhoto,
-	onUploadPhotos,
 	uploading,
 }: Props) => {
 	const [cameraOpen, setCameraOpen] = useState(false);
 	const [modeSelectionOpen, setModeSelectionOpen] = useState(false);
 	const [photos, setPhotos] = useState<File[]>(initialValue);
-	// const [uploading, setUploading] = useState(false);
 	const cameraInput = React.useRef<HTMLInputElement>(null);
 
 	const handleTakePhoto = async (dataUri: string) => {
@@ -60,11 +57,6 @@ export const CameraWidget = ({
 			setModeSelectionOpen(true);
 		}
 	};
-
-	// const handleOnUploadPhotos = () => {
-	//   setUploading(true);
-	//   onUploadPhotos?.().finally(() => setUploading(false));
-	// };
 
 	const hasPhotos = photos.length > 0;
 
