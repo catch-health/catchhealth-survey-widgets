@@ -10,6 +10,8 @@ import type { IQuestion } from "survey-core";
 export interface CameraQuestion extends IQuestion {
 	allowMultiplePhotos: boolean;
 	contents: null | string[];
+	hasUploadedPhotos: boolean;
+	hasBeenValidated: boolean;
 	value:
 		| null
 		| [

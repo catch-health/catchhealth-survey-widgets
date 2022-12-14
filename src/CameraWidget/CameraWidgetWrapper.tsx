@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SurveyModel } from "survey-core";
 import { dataUriToFile, fileToBase64 } from "../utils/file";
 import { CameraWidget } from "./CameraWidget";
@@ -15,7 +15,6 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 	);
 	const [uploading, setUploading] = useState(false);
 	const [isQuestionRendered, setIsQuestionRendered] = useState(true);
-	const hasUploadedPhotos = useRef(false);
 	const handleAddPhoto = async (file: File) => {
 		const content = await fileToBase64(file);
 
@@ -60,17 +59,14 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		}
 
 		setUploading(false);
-		hasUploadedPhotos.current = true;
+		question.hasUploadedPhotos = true;
 
 		// Submit question
 		survey.setValue(question.name, question.value);
 
-		// Go to next page
-		if (survey.isLastPage) {
-			survey.doComplete();
-		} else {
-			survey.nextPage();
-		}
+		// Force server validation and go to next page/complete survey
+		// @ts-expect-error - doCurrentPageComplete is not a public method... But we need it
+		survey.doCurrentPageComplete(survey.isLastPage);
 	};
 
 	useEffect(() => {
@@ -95,7 +91,7 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		}
 
 		const handleCompleting = (sender: any, options: any) => {
-			if (hasUploadedPhotos.current) {
+			if (question.hasUploadedPhotos) {
 				return;
 			}
 
@@ -106,7 +102,7 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		};
 
 		const handleCurrentPageChanging = (sender: any, options: any) => {
-			if (hasUploadedPhotos.current) {
+			if (question.hasUploadedPhotos) {
 				return;
 			}
 
@@ -117,7 +113,8 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 		};
 
 		const handleValueChanged = () => {
-			hasUploadedPhotos.current = false;
+			question.hasUploadedPhotos = false;
+			question.hasBeenValidated = false;
 		};
 
 		survey.onCompleting.add(handleCompleting);
@@ -150,7 +147,6 @@ export const CameraWidgetWrapper = ({ question, handleUpload }: Props) => {
 			onAddPhoto={handleAddPhoto}
 			onRemovePhoto={handleRemovePhoto}
 			fileName={question.name}
-			onUploadPhotos={uploadPhotos}
 			uploading={uploading}
 		/>
 	);
